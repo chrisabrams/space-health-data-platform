@@ -1,4 +1,6 @@
 bower_components
 .DS_Store
 node_modules
+public/
 tmp/
+transaction.json

@@ -27,6 +27,7 @@ module.exports = (grunt) ->
             'app/**/*.coffee'
             'app/**/*.js'
             'app/**/*.hbs'
+            'vendor/bootstrap-select.min.js'
           ]
         options:
           debug: true
@@ -49,6 +50,9 @@ module.exports = (grunt) ->
             jquery:
               path: 'bower_components/jquery/jquery.js'
               exports: '$'
+            store:
+              path: 'vendor/store.js'
+              exports: 'store'
 
     clean:
       dist: ['public/', 'tmp/']
@@ -57,6 +61,7 @@ module.exports = (grunt) ->
       distCss:
         src: [
           'bower_components/bootstrap/dist/css/bootstrap.css'
+          'vendor/bootstrap-select.min.css'
           'tmp/css/app.css'
         ]
         dest: 'public/css/app.css'
@@ -141,27 +146,22 @@ module.exports = (grunt) ->
         nospawn: true
         livereload: LIVERELOAD_PORT
       assets:
-        files: ['app/assets/**/*'],
+        files: ['app/assets/**/*']
         tasks: ['copy']
         options:
           debounceDelay: 50
       css:
-        files: ['app/css/**/*.styl'],
+        files: ['app/styles/application.styl']
         tasks: ['styles']
         options:
           debounceDelay: 50
-      express:
-        files: ['server.js']
-        tasks: ['express:dev']
-        options:
-          nospawn: true
       hbs:
         files: ['app/templates/**/*.hbs']
         tasks: ['browserify:app']
         options:
           debounceDelay: 250
       js:
-        files: ['app/**/*.coffee'],
+        files: ['app/**/*.coffee']
         tasks: ['browserify:app']
         options:
           debounceDelay: 250
